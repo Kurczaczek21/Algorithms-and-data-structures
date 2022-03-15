@@ -1,3 +1,6 @@
+from select import KQ_NOTE_EXEC
+
+
 player = 1
 p = 0
 global possition
@@ -70,3 +73,5 @@ for j in range(1, 9):
                     else:
                         move = input("RUCH GRACZA "+ str(p)+ " GDZIE IDZIESZ?")
                         ruch(int(move))
+
+                        KQ_NOTE_EXEC
