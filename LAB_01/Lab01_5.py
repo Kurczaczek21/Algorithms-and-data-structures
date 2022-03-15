@@ -1,6 +1,3 @@
-from select import KQ_NOTE_EXEC
-
-
 player = 1
 p = 0
 global possition
@@ -52,25 +49,33 @@ def ruch(x):
     player += 1
     print("to byl ruch gracza "+ str(p))
 
-print("testowanieee")
-
 move = input("gdzie?   ")
 
 ruch(int(move))
 
-for j in range(1, 9):
+gamestatus=0
+
+while gamestatus == 0:
     if possition[0]==possition[4]==possition[8]:
         print("gracz "+ str(p) +" wygrywa !!!!!")
+        gamestatus=1
+        break
     else:
         if possition[2]==possition[4]==possition[6]:
             print("gracz "+ str(p) +" wygrywa !!!!!")
+            gamestatus=1
+            break
         else:
             for i in range(0, 3):
                 if possition[0+3*i]==possition[1+3*i]==possition[2+3*i]:
                     print("gracz "+ str(p) +" wygrywa !!!!!")
+                    gamestatus=1
+                    break
                 else:
                     if possition[0+i]==possition[3+i]==possition[6+i]:
                         print("gracz "+ str(p) +" wygrywa !!!!!")
-                    else:
-                        move = input("RUCH GRACZA "+ str(p)+ " GDZIE IDZIESZ?")
-                        ruch(int(move))
+                        gamestatus=1
+                        break
+            else:
+                move = input("RUCH GRACZA "+ str(p+1)+ ", GDZIE IDZIESZ?")
+                ruch(int(move))
