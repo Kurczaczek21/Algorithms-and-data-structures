@@ -1,3 +1,6 @@
+from ctypes import sizeof
+
+
 player = 1
 p = 0
 global possition
@@ -49,33 +52,54 @@ def ruch(x):
     player += 1
     print("to byl ruch gracza "+ str(p))
 
+def pusta_plansza():
+    plansza_up(0,0)
+    plansza_mid(0,0)
+    plansza_down(0,0)
+
+
+pusta_plansza()
+
 move = input("gdzie?   ")
 
 ruch(int(move))
 
-gamestatus=0
+gamestatus=1
 
-while gamestatus == 0:
+while gamestatus == 1:
     if possition[0]==possition[4]==possition[8]:
         print("gracz "+ str(p) +" wygrywa !!!!!")
-        gamestatus=1
+        possition = [1 , 2 , 3, 4 ,5 ,6 ,7 ,8 ,9]
+        gamestatus=0
         break
     else:
         if possition[2]==possition[4]==possition[6]:
             print("gracz "+ str(p) +" wygrywa !!!!!")
-            gamestatus=1
+            possition = [1 , 2 , 3, 4 ,5 ,6 ,7 ,8 ,9]
+            gamestatus=0
             break
         else:
             for i in range(0, 3):
                 if possition[0+3*i]==possition[1+3*i]==possition[2+3*i]:
                     print("gracz "+ str(p) +" wygrywa !!!!!")
-                    gamestatus=1
+                    possition = [1 , 2 , 3, 4 ,5 ,6 ,7 ,8 ,9]
+                    gamestatus=0
                     break
                 else:
                     if possition[0+i]==possition[3+i]==possition[6+i]:
                         print("gracz "+ str(p) +" wygrywa !!!!!")
-                        gamestatus=1
+                        possition = [1 , 2 , 3, 4 ,5 ,6 ,7 ,8 ,9]
+                        gamestatus=0
                         break
             else:
                 move = input("RUCH GRACZA "+ str(p+1)+ ", GDZIE IDZIESZ?")
                 ruch(int(move))
+    if gamestatus==0:   
+        rewanz = input("Grasz nexta?\n type: 'yes' or 'no'" )
+        if rewanz == "yes":
+            gamestatus=1
+        else:
+            if rewanz == "no":
+                print("Thank You for playing")
+
+        
