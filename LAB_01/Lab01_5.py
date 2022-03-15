@@ -52,6 +52,7 @@ def ruch(x):
     player += 1
     print("to byl ruch gracza "+ str(p))
 
+print("testowanieee")
 
 move = input("gdzie?   ")
 
@@ -73,5 +74,3 @@ for j in range(1, 9):
                     else:
                         move = input("RUCH GRACZA "+ str(p)+ " GDZIE IDZIESZ?")
                         ruch(int(move))
-
-                        KQ_NOTE_EXEC
