@@ -1,6 +1,6 @@
 player = 0
 p = 0
-previous_moves =[]
+previous_moves =[ ]
 global possition
 possition = [1 , 2 , 3, 4 ,5 ,6 ,7 ,8 ,9]
 
@@ -82,12 +82,13 @@ while gamestatus == 1:
                         break
             else:
                 move = input("RUCH GRACZA "+ str(player%2 + 1)+ ", GDZIE IDZIESZ?")
-                previous_moves.append(move)
-                for z in range(len(previous_moves)):
-                    for q in range(len(previous_moves)):
-                        if previous_moves[z] == previous_moves[q] and z != q:
+                previous_moves[player]=move
+                for z in range(9):
+                    for q in range(9):
+                        if previous_moves[z] == previous_moves[q] and z != q:       #wypierdala za tablice po usunieciu elementu bo dlugosc stara jest
                             previous_moves.remove(move)
                             move = input("TO POLE JEST JUZ ZAJETE, wybierz inne ")
+                            break
                 ruch(int(move))
     if gamestatus==0:   
         rewanz = input("Grasz nexta?\n type: 'yes' or 'no'" )
