@@ -70,5 +70,3 @@ for j in range(1, 9):
                     else:
                         move = input("RUCH GRACZA "+ str(p)+ " GDZIE IDZIESZ?")
                         ruch(int(move))
-
-#commit testing lol
