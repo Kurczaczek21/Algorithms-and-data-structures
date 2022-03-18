@@ -4,6 +4,7 @@ previous_moves =[]
 global possition
 possition = [1 , 2 , 3, 4 ,5 ,6 ,7 ,8 ,9]
 gamestatus=1
+tracker = 0
 
 def plansza_up(a, r):
     
@@ -75,28 +76,36 @@ def game_reset():
     p=0
     pusta_plansza()
 
-
+def game_rematch():
+    rewanz = input("    DO YOU WANT TO PLAY AGAIN?\n type:  'yes'   or  'no'    \n" )
+    if rewanz == "yes":
+        game_reset()
+    else:
+        if rewanz == "no":
+            print(" THANK YOU FOR PLAYING   ")
+        else:
+            game_rematch()
 
 
 game_reset()
 
 while gamestatus == 1:
     if possition[0]==possition[4]==possition[8]:
-        print("gracz "+ str(p) +" wygrywa !!!!!")
+        print(" PLAYER  "+ str(p) +"    WINS !!!!!")
         gamestatus=0
     else:
         if possition[2]==possition[4]==possition[6]:
-            print("gracz "+ str(p) +" wygrywa !!!!!")
+            print(" PLAYER  "+ str(p) +"    WINS !!!!!")
             gamestatus=0
         else:
             for i in range(0, 3):
                 if possition[0+3*i]==possition[1+3*i]==possition[2+3*i]:
-                    print("gracz "+ str(p) +" wygrywa !!!!!")
+                    print(" PLAYER  "+ str(p) +"    WINS !!!!!")
                     gamestatus=0
                     break
                 else:
                     if possition[0+i]==possition[3+i]==possition[6+i]:
-                        print("gracz "+ str(p) +" wygrywa !!!!!")
+                        print(" PLAYER  "+ str(p) +"    WINS !!!!!")
                         gamestatus=0
                         break
             else:
@@ -105,12 +114,12 @@ while gamestatus == 1:
                     move = input("  ILLEGAL MOVE, TRY AGAIN   ")
                 else:
                     ruch(int(move))
+                    tracker +=1
+    if tracker == 9:
+        print("   DRAW  ")
+        gamestatus = 0
+
     if gamestatus==0:   
-        rewanz = input("    DO YOU WANT TO PLAY AGAIN?\n type:  'yes'   or  'no'    \n" )
-        if rewanz == "yes":
-            game_reset()
-        else:
-            if rewanz == "no":
-                print(" THANK YOU FOR PLAYING   ")
+        game_rematch()
 
         
