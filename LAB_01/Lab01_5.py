@@ -1,9 +1,9 @@
 player = 0
 p = 0
-counter = -1
 previous_moves =[]
 global possition
 possition = [1 , 2 , 3, 4 ,5 ,6 ,7 ,8 ,9]
+gamestatus=1
 
 def plansza_up(a, r):
     
@@ -46,7 +46,7 @@ def ruch(x):
     plansza_mid(x, p)
     plansza_down(x, p)
     player += 1
-    print("to byl ruch gracza "+ str(p))
+    print("_______________________")
 
 def pusta_plansza():
     plansza_up(0,0)
@@ -54,21 +54,31 @@ def pusta_plansza():
     plansza_down(0,0)
 
 def test_ruchu(pole):
-    for z in range(len(previous_moves)):
-        if previous_moves[z] == pole:
-            return "wrong possition"
-    previous_moves.append(pole)
-    return pole
+    if int(pole) < 1 or int(pole) > 9:
+        return "wrong possition"
+    else:
+        for z in range(len(previous_moves)):
+            if previous_moves[z] == pole:
+                return "wrong possition"
+        previous_moves.append(pole)
+        return pole
+
+def game_reset():
+    previous_moves.clear()
+    global possition
+    possition = [1 , 2 , 3, 4 ,5 ,6 ,7 ,8 ,9]
+    global gamestatus
+    gamestatus=1
+    global player
+    palyer = 0
+    global p
+    p=0
+    pusta_plansza()
 
 
 
-pusta_plansza()
 
-#move = input("gdzie?   ")
-
-#ruch(int(move))
-
-gamestatus=1
+game_reset()
 
 while gamestatus == 1:
     if possition[0]==possition[4]==possition[8]:
@@ -90,23 +100,17 @@ while gamestatus == 1:
                         gamestatus=0
                         break
             else:
-                move = input("RUCH GRACZA "+ str(player%2 + 1)+ ", GDZIE IDZIESZ?   ")
+                move = input("PLAYER    "+ str(player%2 + 1)+ "   MOVE   ")
                 while test_ruchu(move) == "wrong possition":
-                    move = input("ZŁE POLE DAWAJ INNE   ")
+                    move = input("  ILLEGAL MOVE, TRY AGAIN   ")
                 else:
                     ruch(int(move))
     if gamestatus==0:   
-        rewanz = input("Grasz nexta?\n type: 'yes' or 'no'" )
+        rewanz = input("    DO YOU WANT TO PLAY AGAIN?\n type:  'yes'   or  'no'    \n" )
         if rewanz == "yes":
-            previous_moves.clear()
-            possition = [1 , 2 , 3, 4 ,5 ,6 ,7 ,8 ,9]
-            gamestatus=1
-            player = 0
-            p=0
-            counter=-1
-            pusta_plansza()
+            game_reset()
         else:
             if rewanz == "no":
-                print("Thank You for playing")
+                print(" THANK YOU FOR PLAYING   ")
 
         
