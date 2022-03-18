@@ -1,3 +1,5 @@
+import random
+
 player = 0
 p = 0
 previous_moves =[]
@@ -74,7 +76,11 @@ def game_reset():
     palyer = 0
     global p
     p=0
+    global tracker 
+    tracker = 0
     pusta_plansza()
+    global game_mode 
+    game_mode = game_type()
 
 def game_rematch():
     rewanz = input("    DO YOU WANT TO PLAY AGAIN?\n type:  'yes'   or  'no'    \n" )
@@ -86,35 +92,90 @@ def game_rematch():
         else:
             game_rematch()
 
+def game_type():
+    pvp = input("  PLAYER VS PLAYER\n         or\n    PLAYER VS PC\n  type:   'pvp'   or  'solo'  ")
+    if pvp == "pvp":
+        return 1
+    else:
+        if pvp == "solo":
+            return 2
+        else:
+            game_type()
 
+
+
+print("#################### \n#   TIC TAC TOE   #\n####################\n")
 game_reset()
+
+
 
 while gamestatus == 1:
     if possition[0]==possition[4]==possition[8]:
-        print(" PLAYER  "+ str(p) +"    WINS !!!!!")
+        if game_mode==1:
+            print(" PLAYER  "+ str(p) +"    WINS !!!!!")
+        else:
+            if p==1:
+                print("   YOU WON   ")
+            else:
+                print("   YOU LOST  ")
         gamestatus=0
     else:
         if possition[2]==possition[4]==possition[6]:
-            print(" PLAYER  "+ str(p) +"    WINS !!!!!")
+            if game_mode==1:
+                print(" PLAYER  "+ str(p) +"    WINS !!!!!")
+            else:
+                if p==1:
+                    print("   YOU WON   ")
+                else:
+                    print("   YOU LOST  ")
             gamestatus=0
         else:
             for i in range(0, 3):
                 if possition[0+3*i]==possition[1+3*i]==possition[2+3*i]:
-                    print(" PLAYER  "+ str(p) +"    WINS !!!!!")
+                    if game_mode==1:
+                        print(" PLAYER  "+ str(p) +"    WINS !!!!!")
+                    else:
+                        if p==1:
+                            print("   YOU WON   ")
+                        else:
+                            print("   YOU LOST  ")
                     gamestatus=0
                     break
                 else:
                     if possition[0+i]==possition[3+i]==possition[6+i]:
-                        print(" PLAYER  "+ str(p) +"    WINS !!!!!")
+                        if game_mode==1:
+                            print(" PLAYER  "+ str(p) +"    WINS !!!!!")
+                        else:
+                            if p==1:
+                                print("   YOU WON   ")
+                            else:
+                                print("   YOU LOST  ")
                         gamestatus=0
                         break
             else:
-                move = input("PLAYER    "+ str(player%2 + 1)+ "   MOVE   ")
-                while test_ruchu(move) == "wrong possition":
-                    move = input("  ILLEGAL MOVE, TRY AGAIN   ")
+                if game_mode==1:
+                    move = input("    PLAYER    "+ str(player%2 + 1)+ "   MOVE   ")
+                    while test_ruchu(move) == "wrong possition":
+                        move = input("  ILLEGAL MOVE, TRY AGAIN   ")
+                    else:
+                        ruch(int(move))
+                        tracker +=1
                 else:
-                    ruch(int(move))
-                    tracker +=1
+                    if player%2+1==1:
+                        move = input("YOUR MOVE    ")
+                        while test_ruchu(move) == "wrong possition":
+                            move = input("  ILLEGAL MOVE, TRY AGAIN   ")
+                        else:
+                            ruch(int(move))
+                            tracker +=1
+                    else:
+                        print("     PC MOVE     ")
+                        move =  random.randint(1, 9)
+                        while test_ruchu(str(move)) == "wrong possition":
+                            move = random.randint(1, 9)
+                        else:
+                            ruch(int(move))
+                            tracker +=1
     if tracker == 9:
         print("   DRAW  ")
         gamestatus = 0
