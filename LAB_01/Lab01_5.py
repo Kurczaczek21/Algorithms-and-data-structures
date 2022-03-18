@@ -53,6 +53,14 @@ def pusta_plansza():
     plansza_mid(0,0)
     plansza_down(0,0)
 
+def test_ruchu(pole):
+    for z in range(len(previous_moves)):
+        if previous_moves[z] == pole:
+            return "wrong possition"
+    previous_moves.append(pole)
+    return pole
+
+
 
 pusta_plansza()
 
@@ -82,21 +90,15 @@ while gamestatus == 1:
                         gamestatus=0
                         break
             else:
-                move = input("RUCH GRACZA "+ str(player%2 + 1)+ ", GDZIE IDZIESZ?")
-                previous_moves.append(move)
-                counter +=1
-                for z in range(len(previous_moves)):
-                    if previous_moves[z] == move and z!= counter:
-                        previous_moves.remove(move)
-                        move = input("TO POLE JEST JUZ ZAJETE, wybierz inne ")
-                        break
-                ruch(int(move))
+                move = input("RUCH GRACZA "+ str(player%2 + 1)+ ", GDZIE IDZIESZ?   ")
+                while test_ruchu(move) == "wrong possition":
+                    move = input("ZŁE POLE DAWAJ INNE   ")
+                else:
+                    ruch(int(move))
     if gamestatus==0:   
         rewanz = input("Grasz nexta?\n type: 'yes' or 'no'" )
         if rewanz == "yes":
-            previous_moves.clear
-            len(previous_moves)=0
-            print(len(previous_moves))
+            previous_moves.clear()
             possition = [1 , 2 , 3, 4 ,5 ,6 ,7 ,8 ,9]
             gamestatus=1
             player = 0
