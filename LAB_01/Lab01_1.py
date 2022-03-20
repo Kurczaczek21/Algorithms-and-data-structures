@@ -1,4 +1,4 @@
-array = [1, 2]
+list = [1, 2]
 suma = 3
 moda = []
 
@@ -9,14 +9,14 @@ moda = []
 #        array.append((array[i-1]+array[i-2])/(array[i-2]-array[i-1]))
 
 for i in range (2,48):
-       array.append((array[i-1]+array[i-2])/(array[i-1]-array[i-2]))
-       suma += array[i]
+       list.append((list[i-1]+list[i-2])/(list[i-1]-list[i-2]))
+       suma += list[i]
 
 for i in range(48):
        for k in range(48):
               if k!= i :       
-                     if array[i]==array[k]:
-                            moda.append(array[i])
+                     if list[i]==list[k]:
+                            moda.append(list[i])
 
 
 srednia = suma/48
