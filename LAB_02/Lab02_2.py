@@ -1,6 +1,6 @@
 from operator import itemgetter
 
-file = open('C:\PY prog\LAB_02\zadanie2.csv', 'r')
+file = open('zadanie2.csv', 'r')
 
 new_file = []
 
@@ -31,7 +31,7 @@ for i in range(len(new_file)):
     j=0
     new_file[i][1]=new_file[i][1].split(' ')
     current_word_number=len(new_file[i][1])
-    
+
     while j<current_word_number:
         if len(new_file[i][1][j])>1:
             if ord(new_file[i][1][j][0])==(ord(new_file[i][1][j][1])+1) or ord(new_file[i][1][j][0])==(ord(new_file[i][1][j][1])-1):
