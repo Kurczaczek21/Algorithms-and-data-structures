@@ -1,6 +1,6 @@
 from operator import itemgetter
 
-file = open('E:\PROGRAMMS\Collage-AiSD\LAB_02\zadanie2.csv', 'r')
+file = open('C:\PY prog\LAB_02\zadanie2.csv', 'r')
 
 new_file = []
 
@@ -23,16 +23,21 @@ for i in range(len(new_file)):
         new_file[i][0]=int(new_file[i-1][0])+1
     alreadyUsed.append(int(new_file[i][0]))
 
+
 deleted_words=[]
-current_file_length=len(new_file)
-possition=0
-while possition < current_file_length:
-    new_file[possition][1]=new_file[possition][1].split(' ')
-    for j in range(len(new_file[possition][1])):
-        if len(new_file[possition][1][j])>1:
-            if ord(new_file[possition][1][j][0])==(ord(new_file[possition][1][j][1])+1) or ord(new_file[possition][1][j][0])==(ord(new_file[possition][1][j][1])-1):
-                deleted_words.append(str(new_file[possition][0])+"  "+str(new_file[possition][1][j]))
-                # current_file_length-=1
-                # del new_file[possition][1][j]
-            possition+=1
+current_word_number=0
+
+for i in range(len(new_file)):
+    j=0
+    new_file[i][1]=new_file[i][1].split(' ')
+    current_word_number=len(new_file[i][1])
+    
+    while j<current_word_number:
+        if len(new_file[i][1][j])>1:
+            if ord(new_file[i][1][j][0])==(ord(new_file[i][1][j][1])+1) or ord(new_file[i][1][j][0])==(ord(new_file[i][1][j][1])-1):
+                deleted_words.append(str(new_file[i][0])+"  "+str(new_file[i][1][j]))
+                del new_file[i][1][j]
+                current_word_number-=1
+        j+=1
+
 print(deleted_words)
