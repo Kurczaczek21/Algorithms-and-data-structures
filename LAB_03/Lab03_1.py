@@ -8,9 +8,9 @@ files = glob.glob('LAB_03/zadanie1/*')
 for i in range(len(files)):
     files[i]=files[i].replace('LAB_03/zadanie1\\','')
     i+=1
-# for i in range(26):
-#     new_folder=(chr(65+i))
-#     os.mkdir(os.path.join('E:\PROGRAMMS\Collage-AiSD\LAB_03\SORTED FOLDERS',new_folder ))
+for i in range(26):
+    new_folder=(chr(65+i))
+    os.mkdir(os.path.join('E:\PROGRAMMS\Collage-AiSD\LAB_03\SORTED FOLDERS',new_folder ))
 
 sorted=glob.glob('LAB_03/SORTED FOLDERS/*')
 
@@ -23,5 +23,5 @@ for j in range(len(files)):
         if sorted[i]==files[j][0]:
             source=files[j]
             dest=sorted[i]
-            os.replace('E:\PROGRAMMS\Collage-AiSD\LAB_03\zadanie1\\'+ source , "E:\PROGRAMMS\Collage-AiSD\LAB_03\SORTED FOLDERS\\"+dest)
+            os.replace('E:\PROGRAMMS\Collage-AiSD\LAB_03\zadanie1\\'+ source , "E:\PROGRAMMS\Collage-AiSD\LAB_03\SORTED FOLDERS\\"+dest+'\\'+source)
     
