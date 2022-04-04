@@ -1,4 +1,3 @@
-from fileinput import filename
 from random import randint
 class LOTTO:
 	def __init__(self, list_len):
@@ -25,9 +24,6 @@ def SPRAWDZ2(list1, list2):
 		if line in list2:
 			print('jd jest 2 elementy')
 
-
-
-
 lala = LOTTO(5)
 papa = LOTTO(6)
 
@@ -36,7 +32,7 @@ print(SPRAWDZ(lala.list, papa.list))
 SPRAWDZ2(lala.printer(), papa.printer())
 print(lala.printer())
 
-# filename=str(lala.list[0])+str(lala.list[1])+'.txt'
-# file = open(filename,'w')
-# file.write(str(SPRAWDZ(lala.printer(), papa.printer()))+'KUTAAAAAAAAAAAAAAAAAAAAS')
-# file.close
+filename=str(lala.list[0])+str(lala.list[1])+'.txt'
+file = open(filename,'w')
+file.write(str(SPRAWDZ(lala.printer(), papa.printer()))+'AAAAAAAAAAAAAAAAAAAAS')
+file.close
