@@ -1,3 +1,4 @@
+from math import sqrt
 from random import randint
 import statistics
 from statistics import mode
@@ -33,6 +34,17 @@ class RANDOM:
         self.list.sort()
         return (self.list[149]+self.list[250])/2
 
+    def odchyl(self):
+        sum=0
+        srednia=0
+        for line in self.list:
+            srednia+=line
+        srednia = srednia/len(self.list)
+        for line in self.list:
+            sum+=(line-srednia)*(line-srednia)
+        return sqrt(sum/len(self.list))
+
+
     # def moda2(self):
     #     return max(set(self.list), key=self.list.count)
 
@@ -43,8 +55,9 @@ print(x.maximum())
 print(x.moda())
 # print(x.moda2())
 print(x.mediana())
+print(x.odchyl())
 
 file=open('plik.txt','w')
 file.write(' '.join([str(elem) for elem in x.printer()]))
 file.write("\n")
-file.write(str(x.minimal())+'    '+str(x.maximum())+'     '+str(x.moda())+'    '+str(x.mediana()))
+file.write(str(x.minimal())+'    '+str(x.maximum())+'     '+str(x.moda())+'    '+str(x.mediana())+' '+str(x.odchyl()))
