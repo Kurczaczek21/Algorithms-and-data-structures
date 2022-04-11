@@ -19,10 +19,8 @@ def mergesort(A: list)->list:
         return A
     else:
         mid = len(A)/2
-        left=A[int(mid):]
-        right=A[:int(mid)]
-        print(left)
-        print(right)
+        left=A[:int(mid)]
+        right=A[int(mid):]
         left_list=mergesort(left)
         right_list=mergesort(right)
         sorted_list=merge(left_list, right_list)
@@ -43,10 +41,17 @@ def merge(left: list,right: list)->list:
     sorted_list+=right[r:]
     return sorted_list
 
-list=[]
+if __name__ == '__main__':
+    list=[18,41,26,24,7,5,3,1,2]
+    l2=list
+    # for i in range(100):
+    #     list.append(randint(1,1000))
 
-for i in range(101):
-    list.append(randint(1,1000))
-
-x=mergesort(list)
-print(x)
+    x=mergesort(list)
+    y=insertionsort(list)
+    x1=mergesort(l2)
+    y1=insertionsort(l2)
+    print(x)
+    print(y)
+    print(x1)
+    print(y1)
