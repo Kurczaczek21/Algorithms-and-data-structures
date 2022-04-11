@@ -14,19 +14,19 @@ def insertionsort(A: list)->list:
 
 # ZADANIE 2
 
-def mergesort(A: list)->list:
+def mergesort2(A: list)->list:
     if len(A)==1 or len(A)==0:
         return A
     else:
         mid = len(A)/2
         left=A[:int(mid)]
         right=A[int(mid):]
-        left_list=mergesort(left)
-        right_list=mergesort(right)
-        sorted_list=merge(left_list, right_list)
+        left_list=mergesort2(left)
+        right_list=mergesort2(right)
+        sorted_list=merge2(left_list, right_list)
         return sorted_list
 
-def merge(left: list,right: list)->list:
+def merge2(left: list,right: list)->list:
     sorted_list=[]
     l=0
     r=0
@@ -41,15 +41,45 @@ def merge(left: list,right: list)->list:
     sorted_list+=right[r:]
     return sorted_list
 
+def mergesort(A: list,a: int,b: int)->None:
+    if a < b:
+        c = (a+b)//2
+        mergesort(A ,a ,c )
+        mergesort(A ,c+1 ,b )
+        merge(A, a, c, b)
+    
+def merge(A: list,start: int ,mid: int, end: int)->None:
+    sorted_list=[]
+    left=start
+    right=mid+1
+
+    while left<mid and right<end:
+        if A[left]<A[right]:
+            sorted_list.append(A[left])
+            left+=1
+        else:
+            sorted_list.append(A[right])
+            right+=1
+
+    while left<=mid:
+        sorted_list.append(A[left])
+        left+=1
+    while right <=end:
+        sorted_list.append(A[right])
+        right+=1
+    
+    for i in range(start,end+1):
+        A[i]=sorted_list[i-start]
+
 if __name__ == '__main__':
     list=[18,41,26,24,7,5,3,1,2]
     l2=list
     # for i in range(100):
     #     list.append(randint(1,1000))
 
-    x=mergesort(list)
+    x=mergesort(list,0,len(list)-1)
     y=insertionsort(list)
-    x1=mergesort(l2)
+    x1=mergesort(l2,0,len(list)-1)
     y1=insertionsort(l2)
     print(x)
     print(y)
