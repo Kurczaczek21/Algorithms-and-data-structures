@@ -1,4 +1,5 @@
 from random import randint
+from time import time
 
 # ZADANIE 1
 
@@ -52,7 +53,6 @@ def merge(A: list,start: int ,mid: int, end: int)->None:
     sorted_list=[]
     left=start
     right=mid+1
-
     while left<mid and right<end:
         if A[left]<A[right]:
             sorted_list.append(A[left])
@@ -72,16 +72,33 @@ def merge(A: list,start: int ,mid: int, end: int)->None:
         A[i]=sorted_list[i-start]
 
 if __name__ == '__main__':
-    list=[18,41,26,24,7,5,3,1,2]
-    l2=list
-    # for i in range(100):
-    #     list.append(randint(1,1000))
-
-    x=mergesort(list,0,len(list)-1)
-    y=insertionsort(list)
-    x1=mergesort(l2,0,len(list)-1)
-    y1=insertionsort(l2)
-    print(x)
-    print(y)
-    print(x1)
-    print(y1)
+    
+    total_start=time()
+    
+    insort_time=[]
+    mersort_time=[]
+    pysort_time=[]
+    
+    for i in range(100):
+        random_list_1=[]
+        for i in range(10000):
+            random_list_1.append(randint(1,1000))
+        random_list_2=random_list_1
+        random_list_3=random_list_1
+        
+        start=time()
+        insertionsort(random_list_1)
+        insort_time.append(time()-start)
+        
+        start=time()
+        mergesort(random_list_2 ,0 ,len(random_list_2)-1)
+        mersort_time.append(time()-start)
+        
+        start=time()
+        random_list_3.sort()
+        pysort_time.append(time()-start)
+    
+    print('insert time:' + str(sum(insort_time)))
+    print('merge time:' + str(sum(mersort_time)))
+    print('python sort time: '+ str(sum(pysort_time)))
+    print('Total time: '+ str(time()-total_start))
