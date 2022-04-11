@@ -1,10 +1,8 @@
+from random import randint
 
 # ZADANIE 1
 
-from re import A
-
-
-def insertionsort(A):
+def insertionsort(A: list)->list:
     for i in range(len(A)):
         x=A[i]
         j=i-1
@@ -14,19 +12,41 @@ def insertionsort(A):
         A[j+1]=x
     return A
 
-list=[5,3,1,24,54,3,54,2,3,87,43]
-print(list)
-# insertionsort(list)
-print(list)
-
 # ZADANIE 2
 
-def mergesort(A, a, b):
-    if a<b:
-        c=(a+b)/2
-        mergesort(A, a, c)
-        mergesort(A, c+1, b)
-        merge(T, a, c , b)
-    return A
+def mergesort(A: list)->list:
+    if len(A)==1 or len(A)==0:
+        return A
+    else:
+        mid = len(A)/2
+        left=A[int(mid):]
+        right=A[:int(mid)]
+        print(left)
+        print(right)
+        left_list=mergesort(left)
+        right_list=mergesort(right)
+        sorted_list=merge(left_list, right_list)
+        return sorted_list
 
-mergesort(A)
+def merge(left: list,right: list)->list:
+    sorted_list=[]
+    l=0
+    r=0
+    while l<len(left) and r<len(right):
+        if left[l]<right[r]:
+            sorted_list.append(left[l])
+            l+=1
+        else:
+            sorted_list.append(right[r])
+            r+=1
+    sorted_list+=left[l:]
+    sorted_list+=right[r:]
+    return sorted_list
+
+list=[]
+
+for i in range(101):
+    list.append(randint(1,1000))
+
+x=mergesort(list)
+print(x)
