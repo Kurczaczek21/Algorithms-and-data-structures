@@ -13,8 +13,6 @@ def insertionsort(A: list)->list:
         A[j+1]=x
     return A
 
-# ZADANIE 2
-
 def mergesort(A: list,a: int,b: int)->None:
     if a < b:
         c = (a+b)//2
@@ -40,7 +38,7 @@ def merge(A: list,start: int ,mid: int, end: int)->None:
     while right <=end:
         sorted_list.append(A[right])
         right+=1
-    
+
     for i in range(start,end+1):
         A[i]=sorted_list[i-start]
 
@@ -55,7 +53,7 @@ if __name__ == '__main__':
     for i in range(1000):
         random_list_1=[]
         for i in range(1000):
-            random_list_1.append(randint(1,1000))
+            random_list_1.append(randint(1,10000))
         random_list_2=random_list_1
         random_list_3=random_list_1
         
@@ -71,7 +69,7 @@ if __name__ == '__main__':
         random_list_3.sort()
         pysort_time.append(time()-start)
     
-    print('insert time:' + str(sum(insort_time)))
-    print('merge time:' + str(sum(mersort_time)))
-    print('python sort time: '+ str(sum(pysort_time)))
+    print('Insertion sort time:' + str(sum(insort_time)))
+    print('Merge sort time:' + str(sum(mersort_time)))
+    print('Python sort() function time: '+ str(sum(pysort_time)))
     print('Total time: '+ str(time()-total_start))
