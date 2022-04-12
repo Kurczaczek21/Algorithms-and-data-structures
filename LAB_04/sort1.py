@@ -15,33 +15,6 @@ def insertionsort(A: list)->list:
 
 # ZADANIE 2
 
-def mergesort2(A: list)->list:
-    if len(A)==1 or len(A)==0:
-        return A
-    else:
-        mid = len(A)/2
-        left=A[:int(mid)]
-        right=A[int(mid):]
-        left_list=mergesort2(left)
-        right_list=mergesort2(right)
-        sorted_list=merge2(left_list, right_list)
-        return sorted_list
-
-def merge2(left: list,right: list)->list:
-    sorted_list=[]
-    l=0
-    r=0
-    while l<len(left) and r<len(right):
-        if left[l]<right[r]:
-            sorted_list.append(left[l])
-            l+=1
-        else:
-            sorted_list.append(right[r])
-            r+=1
-    sorted_list+=left[l:]
-    sorted_list+=right[r:]
-    return sorted_list
-
 def mergesort(A: list,a: int,b: int)->None:
     if a < b:
         c = (a+b)//2
@@ -79,9 +52,9 @@ if __name__ == '__main__':
     mersort_time=[]
     pysort_time=[]
     
-    for i in range(100):
+    for i in range(1000):
         random_list_1=[]
-        for i in range(10000):
+        for i in range(1000):
             random_list_1.append(randint(1,1000))
         random_list_2=random_list_1
         random_list_3=random_list_1
