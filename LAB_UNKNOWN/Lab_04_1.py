@@ -3,14 +3,13 @@ def Hanoi(n, sour, dest, buff): #2^n-1 dla 3 -> 7; dla 4 ->15 itd
     if n==1:
         sour-=1
         dest+=1
-    else:
-        Hanoi(n-1,sour,buff,dest)
-        sour-=1
-        dest+=1
-        Hanoi(n-1,buff,dest,sour)
+        return (str(sour)+str(buff)+str(dest))
+    Hanoi(n-1,sour,buff,dest)
+    sour-=1
+    dest+=1
+    Hanoi(n-1,buff,dest,sour)
 
 Hanoi(3,3,0,0)
-
 
 
 
