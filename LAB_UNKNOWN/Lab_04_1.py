@@ -3,7 +3,6 @@ def Hanoi(n, sour, dest, buff): #2^n-1 dla 3 -> 7; dla 4 ->15 itd
     if n==1:
         sour-=1
         dest+=1
-        return (str(sour)+str(buff)+str(dest))
     Hanoi(n-1,sour,buff,dest)
     sour-=1
     dest+=1
@@ -11,6 +10,14 @@ def Hanoi(n, sour, dest, buff): #2^n-1 dla 3 -> 7; dla 4 ->15 itd
 
 Hanoi(3,3,0,0)
 
+def Hanoi_2(n, sour, dest, buff):
+    WHILE (sour != Null OR buff !=Null):
+        IF i%3 == 1:
+            Possible move disk between sour and dest
+        IF i%3 == 2:
+            Possible move disk between sour and buff
+        IF i%3 == 0:
+            Possible move disk between buff and dest
 
 
     # if n%2 ==0:
