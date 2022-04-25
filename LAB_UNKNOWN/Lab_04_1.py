@@ -1,28 +1,29 @@
-def Hanoi(n, sour, dest, buff): #2^n-1 dla 3 -> 7; dla 4 ->15 itd
-    print(sour,buff,dest)
+
+def Hanoi_req(n: int, sour: str, dest:str, buff:str)->None: #2^n-1 dla 3 -> 7; dla 4 ->15 itd
+    '''
+    hanoi iteration
+    '''
     if n==1:
-        sour-=1
-        dest+=1
+        print('move from:'+str(sour)+' to '+str(dest))
     else:
-        Hanoi(n-1,sour,buff,dest)
-        sour-=1
-        dest+=1
-        Hanoi(n-1,buff,dest,sour)
+        Hanoi_req(n-1,sour,buff,dest)
+        print('move from:'+str(sour)+' to '+str(dest))
+        Hanoi_req(n-1,buff,dest,sour)
 
-Hanoi(4,4,0,0)
+Hanoi_req(3,'sour','buff','dest')
 
-def Hanoi_2(n, sour, dest, buff):
-    i=0
-    while sour != None or buff !=None:
+def possible_move(x: str, y:str):
+
+
+def Hanoi_2(n:int, sour:str, dest:str, buff:str)->None:
+    x,y,z=0,0,0
+    for i in range(1,2**n):
         if i%3 == 1:
             Possible move disk between sour and dest
-            i+=1
         if i%3 == 2:
             Possible move disk between sour and buff
-            i+=1
         if i%3 == 0:
             Possible move disk between buff and dest
-            i+=1
 
 
     # if n%2 ==0:
