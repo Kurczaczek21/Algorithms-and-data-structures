@@ -69,7 +69,7 @@ if __name__ == '__main__':
     hanoi_req_time=[]
     hanoi_iter_time=[]
     
-    for i in range(1,30):
+    for i in range(3,25):
     # Hanoi recursive solve time: 198.02846217155457        for n=30
     # Hanoi iteration solve time:842.4369783401489
     # Total time: 1040.4659361839294
