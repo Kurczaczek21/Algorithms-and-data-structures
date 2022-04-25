@@ -29,7 +29,7 @@ def list_change(a:str,b:str,x:list,y:list)->None:
 
 def possible_move(a:str,b:str,x:list,y:list)->None:
     '''
-    checks witch move could be made
+    checks wich move could be made
     '''
     if len(y)==0:
         list_change(a,b,x,y)
