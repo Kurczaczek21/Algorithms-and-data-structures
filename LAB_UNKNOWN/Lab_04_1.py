@@ -21,13 +21,10 @@ def Hanoi_2(n:int, sour:str, dest:str, buff:str)->None:
     b=[]            #buff
     c=[]            #dest
     for i in range(1,2**n):
-        print(i)
         if i%3 == 1:
-            print(a,b,c)
             if len(c)==0 and len(a)!=0:
                 c.append(a[len(a)-1])
                 a.remove(a[len(a)-1])
-                print('dadad')
                 print('Move disk from '+sour+' to '+dest)
             elif len(a)==0 and len(c)!=0:
                 a.append(c[len(c)-1])
@@ -36,7 +33,6 @@ def Hanoi_2(n:int, sour:str, dest:str, buff:str)->None:
             elif a[len(a)-1]<c[len(c)-1]:
                 c.append(a[len(a)-1])
                 a.remove(a[len(a)-1])
-                print(a,b,c)
                 print('Move disk from '+sour+' to '+dest)
             else:
                 a.append(c[len(c)-1])
@@ -46,7 +42,6 @@ def Hanoi_2(n:int, sour:str, dest:str, buff:str)->None:
                     break
                 
         if i%3 == 2:
-            print(a,b,c)
             if len(b)==0 and len(a)!=0:
                 b.append(a[len(a)-1])
                 a.remove(a[len(a)-1])
@@ -67,7 +62,6 @@ def Hanoi_2(n:int, sour:str, dest:str, buff:str)->None:
                     break
                 
         if i%3 == 0:
-            print(a,b,c)
             if len(b)==0 and len(c)!=0:
                 b.append(c[len(c)-1])
                 c.remove(c[len(c)-1])
