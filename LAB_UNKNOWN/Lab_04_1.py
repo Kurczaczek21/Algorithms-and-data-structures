@@ -12,19 +12,19 @@ def Hanoi_req(n: int, sour: str, dest:str, buff:str)->None: #2^n-1 dla 3 -> 7; d
 
 Hanoi_req(3,'sour','buff','dest')
 
-def possible_move(x: str, y:str):
+# def possible_move(x: str, y:str):
 
 
 def Hanoi_2(n:int, sour:str, dest:str, buff:str)->None:
-    x,y,z=0,0,0
     for i in range(1,2**n):
         if i%3 == 1:
-            Possible move disk between sour and dest
+            print('Possible move disk between '+sour+' and '+dest)
         if i%3 == 2:
-            Possible move disk between sour and buff
+            print('Possible move disk between '+sour+' and '+buff)
         if i%3 == 0:
-            Possible move disk between buff and dest
+            print('Possible move disk between '+buff+' and '+dest)
 
+Hanoi_2(3,'sour','buff','dest')
 
     # if n%2 ==0:
     #     #AB AC BC
