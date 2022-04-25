@@ -1,7 +1,7 @@
 
-def Hanoi_req(n: int, sour: str, dest:str, buff:str)->None: #2^n-1 dla 3 -> 7; dla 4 ->15 itd
+def Hanoi_req(n: int, sour: str, dest:str, buff:str)->None:
     '''
-    hanoi iteration
+    hanoi recursive solve function
     '''
     if n==1:
         print('move from:'+str(sour)+' to '+str(dest))
@@ -11,30 +11,39 @@ def Hanoi_req(n: int, sour: str, dest:str, buff:str)->None: #2^n-1 dla 3 -> 7; d
         Hanoi_req(n-1,buff,dest,sour)
 
 def make_hanoi(n:int):
+    '''
+    creates reversed n-length list
+    '''
     hanoi=[]
     for i in range(n):
         hanoi.append(n-i)
     return hanoi
 
+def list_change(a:str,b:str,x:list,y:list)->None:
+    '''
+    moves disc to another stake
+    '''
+    y.append(x[len(x)-1])
+    x.remove(x[len(x)-1])
+    print('Move disk from '+a+' to '+b)
+
 def possible_move(a:str,b:str,x:list,y:list)->None:
+    '''
+    checks witch move could be made
+    '''
     if len(y)==0:
-        y.append(x[len(x)-1])
-        x.remove(x[len(x)-1])
-        print('Move disk from '+a+' to '+b)
+        list_change(a,b,x,y)
     elif len(x)==0:
-        x.append(y[len(y)-1])
-        y.remove(y[len(y)-1])
-        print('Move disk from '+b+' to '+a)
+        list_change(b,a,y,x)
     elif x[len(x)-1]<y[len(y)-1]:
-        y.append(x[len(x)-1])
-        x.remove(x[len(x)-1])
-        print('Move disk from '+a+' to '+b)
+        list_change(a,b,x,y)
     else:
-        x.append(y[len(y)-1])
-        y.remove(y[len(y)-1])
-        print('Move disk from '+b+' to '+a)
+        list_change(b,a,y,x)
 
 def Hanoi_2(n:int, sour:str, dest:str, buff:str)->None:
+    '''
+    hanoi iteration solve function
+    '''
     a=make_hanoi(n) #sour
     b=[]            #buff
     c=[]            #dest
