@@ -1,8 +1,5 @@
-import random
-for i in range(10):
-    move =  random.randint(1, 9)
-    print(type(move))
+k=[[3],[2],[1,32]]
+if [1] in k:
+    print('sa')
 
-k=input()
-print(type(k))
-print("#################### \n#   TIC TAC TOE   #\n####################")
+print(k.sort())
