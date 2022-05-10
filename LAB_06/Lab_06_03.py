@@ -13,14 +13,10 @@ if __name__ == '__main__':
 	trees.print()
 
 #   task no 2
-	for elem in elems_to_insert:
-		trees.insert(elem)
-
-   # trees.print()
 
 	print(
-		str(trees.min(2))+'	'+  # MIN on third tree
-		str(trees.max(2))+'	'+  # MAX on third tree
+		'minimum of 7th tree: '+str(trees.min(7))+'	'+  # MIN on third tree
+		'maximmum of 7th tree: '+str(trees.max(7))+'	'+  # MAX on third tree
 		str(trees.search(7.7))+'	',  # SEARCH
 		sep='\n'
 	)
