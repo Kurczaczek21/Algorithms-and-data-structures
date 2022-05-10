@@ -28,7 +28,7 @@ class BST:
 						insert_help(value, curr_node.right, output)
 				else:
 					if output:
-						print('Value already in tree! Skipping...')
+						print('Value is in the tree, moving to next element')
 			insert_help(value, self.root, output)
 
 	def height(self):
@@ -51,7 +51,7 @@ class BST:
 			def printer_helper(curr_node, arr):
 				if curr_node is not None:
 					try:
-						arr[self.idx].append('-' * len(arr[self.idx]) + ' ' + str(curr_node.value))
+						arr[self.idx].append("-" * len(arr[self.idx]) + ' ' + str(curr_node.value))
 					except IndexError:
 						arr.append([])
 						arr[self.idx].append('-' * len(arr[self.idx]) + ' ' + str(curr_node.value))
