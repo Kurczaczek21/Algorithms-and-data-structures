@@ -1,7 +1,6 @@
 import random
 from time import time
 from Lab_06_02 import Trees
-from texttable import Texttable
 
 if __name__ == '__main__':
 	number_of_elements = [50, 100, 500, 1_000, 10_000, 25_000, 50_000, 100_000, 250_000, 1_000_000]
