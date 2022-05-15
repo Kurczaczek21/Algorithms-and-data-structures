@@ -1,6 +1,6 @@
 if __name__ == '__main__':
-    new_file=open('C:\\PY prog\\LAB_07\\patterns\\1000_pattern.txt', 'r').readlines()
-    
+    new_file=open('C:\\PY prog\\LAB_07\\patterns\\1000_pattern.txt', 'r').readlines()   
+    # task no 1; primitive algorithm
     coordinates=[]
 
     for x in range(len(new_file)-2):
@@ -8,7 +8,10 @@ if __name__ == '__main__':
             if new_file[x][i]==chr(65) and new_file[x][i+1]==chr(66) and new_file[x][i+2]==chr(67):
                 if new_file[x+1][i]==chr(66) and new_file[x+2][i]==chr(67):
                     coordinates.append(str(x)+', '+str(i))
-
-
     print(coordinates)
+
+    #task no 2; Karp-Rabin algorithm
+    
+
+
 
