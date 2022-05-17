@@ -2,8 +2,8 @@ import csv
 import matplotlib.pyplot as plt
 
 if __name__ == '__main__':
-	INPUT_FILE = 'times.csv'
-	OUTPUT_FILE = 'plot.png'
+	INPUT_FILE = 'C:\\PY prog\\LAB_07\\times_data.csv'
+	OUTPUT_FILE = 'graph.png'
 	Ns, naive_times, rabin_karp_times = [], [], []
 
 	# read from csv file
@@ -16,8 +16,8 @@ if __name__ == '__main__':
 			rabin_karp_times.append(float(row[2]))
 
 	# add plots
-	plt.plot(Ns, naive_times, color='r', label='naive algorithm',  marker='x', markersize=6, linestyle='')
-	plt.plot(Ns, rabin_karp_times, color='b', label='Rabin - Karp algorithm', marker='x', markersize=6, linestyle='')
+	plt.plot(Ns, naive_times, color='c', label='naive algorithm',  marker='o', markersize=6, linestyle='dotted')
+	plt.plot(Ns, rabin_karp_times, color='r', label='Rabin - Karp algorithm', marker='o', markersize=6, linestyle='dotted')
 
 	plt.title('times of algorithms depending on matrix size')
 	plt.legend()
