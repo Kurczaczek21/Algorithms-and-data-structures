@@ -2,7 +2,7 @@ import csv
 import matplotlib.pyplot as plt
 
 if __name__ == '__main__':
-	INPUT_FILE = 'C:\\PY prog\\LAB_07\\times_data.csv'
+	INPUT_FILE = 'E:\PROGRAMMS\Collage-AiSD\\LAB_07\\times_data.csv'
 	OUTPUT_FILE = 'graph.png'
 	Ns, naive_times, rabin_karp_times = [], [], []
 
@@ -16,6 +16,7 @@ if __name__ == '__main__':
 			rabin_karp_times.append(float(row[2]))
 
 	# add plots
+	plt.style.use('dracula')
 	plt.plot(Ns, naive_times, color='c', label='naive algorithm',  marker='o', markersize=6, linestyle='dotted')
 	plt.plot(Ns, rabin_karp_times, color='r', label='Rabin - Karp algorithm', marker='o', markersize=6, linestyle='dotted')
 
