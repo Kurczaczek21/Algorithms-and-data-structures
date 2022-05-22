@@ -4,7 +4,7 @@ from numpy import power
 def open_file()-> list:
     """opens file with coordinates
     """
-    coordinates=open('C:\PY prog\LAB_08\TSP.txt','r').readlines()
+    coordinates=open('E:\PROGRAMMS\Collage-AiSD\LAB_08\TSP.txt','r').readlines()
 
     for i in range(len(coordinates)):    
         coordinates[i]=coordinates[i].split('\t')
@@ -17,8 +17,11 @@ def open_file()-> list:
 
 def pathfinder_naive(source:int,coordinates:list):
     sum_path=0
+    cities=[coordinates[source-1][0]]
     for i in range(len(coordinates)):
         sum_path+=sqrt(((coordinates[(source+i)%len(coordinates)][1]-coordinates[(source+i+1)%len(coordinates)][1]))**2+(coordinates[(source+i)%len(coordinates)][2]-coordinates[(source+i+1)%len(coordinates)][2])**2)
+        cities.append(coordinates[(source+i)%len(coordinates)][0])
+    print(cities)
     return sum_path
 
 def find_closest_val(core:float,elements:list):
@@ -39,26 +42,12 @@ def pathfinder_optimize(source:int,coordinates:list):
             x_coordinates.append(coordinates[i][1])
             y_coordinates.append(coordinates[i][2])
     
-    x=find_closest_val(coordinates[source-1][1],x_coordinates)
-    y=find_closest_val(coordinates[source-1][2],y_coordinates)
-    print(coordinates[x][1],coordinates[x][2])
-    print(coordinates[y][1],coordinates[y][2])    
-    print(coordinates[source-1][1],coordinates[source-1][2])
 
-    print(coordinates[x][1]-coordinates[source-1][1])
-    rd1=sqrt(((coordinates[x][1]-coordinates[source-1][1]))**2+(coordinates[x][2]-coordinates[source-1][2])**2)
-
-    print(coordinates[y][2]-coordinates[source-1][2])
-    rd2=sqrt(((coordinates[y][1]-coordinates[source-1][1]))**2+(coordinates[y][2]-coordinates[source-1][2])**2)
-
-    print(rd1)
-    print(rd2)
-    return sum_path
 
 
 
 if __name__=='__main__':
-    x=pathfinder_optimize(1,open_file())
+    x=pathfinder_naive(1,open_file())
     print(x)
 
 
