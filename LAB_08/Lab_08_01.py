@@ -39,13 +39,13 @@ def search_min_distances(elements:list, core:int): #core=index+1 ; index=core-1
     
 
 def pathfinder_optimize(source:int,coordinates:list): #source = index +1 ; index=source-1
+    first_city =coordinates[source-1]
     path_id=[source]
     temp=search_min_distances(coordinates,source)
     coordinates.pop(source-1)
     sum_path=temp[0]
     path_id.append(temp[1])
     core=temp[1]
-    print(path_id)
     for k in range(len(coordinates)-1):
         temp=search_min_distances(coordinates,core)
         for i in range(len(coordinates)):    
@@ -55,13 +55,21 @@ def pathfinder_optimize(source:int,coordinates:list): #source = index +1 ; index
         sum_path+=temp[0]
         path_id.append(temp[1])
         core=temp[1]
-        print(path_id)
-
+    sum_path+=sqrt((coordinates[0][1]-first_city[1])**2+(coordinates[0][2]-first_city[2])**2)
+    path_id.append(first_city[0])
     return sum_path
 
 
 if __name__=='__main__':
-    x=pathfinder_optimize(26,open_file())
-    print(x)
-
+    minimum_path=1000
+    city_begin=0
+    for i in range(1,101):
+        print(i)
+        if minimum_path>pathfinder_optimize(i,open_file()):
+            minimum_path=pathfinder_optimize(i,open_file())
+            city_begin=i
+    print(minimum_path)
+    print(city_begin)
+    print(pathfinder_optimize(city_begin,open_file()))
+        
 
