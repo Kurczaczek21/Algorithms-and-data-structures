@@ -64,12 +64,12 @@ if __name__=='__main__':
     minimum_path=1000
     city_begin=0
     for i in range(1,101):
-        print(i)
-        if minimum_path>pathfinder_optimize(i,open_file()):
-            minimum_path=pathfinder_optimize(i,open_file())
+        x=pathfinder_optimize(i,open_file())
+        if minimum_path>x:
+            minimum_path=x
             city_begin=i
+    print(pathfinder_naive(1,open_file()))
     print(minimum_path)
     print(city_begin)
     print(pathfinder_optimize(city_begin,open_file()))
-        
 
