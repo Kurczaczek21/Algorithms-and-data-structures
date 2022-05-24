@@ -1,10 +1,9 @@
 from math import sqrt
-from numpy import power
 
 def open_file()-> list:
     """opens file with coordinates
     """
-    coordinates=open('E:\PROGRAMMS\Collage-AiSD\LAB_08\TSP.txt','r').readlines()
+    coordinates=open('C:\PY prog\LAB_08\TSP.txt','r').readlines()
 
     for i in range(len(coordinates)):    
         coordinates[i]=coordinates[i].split('\t')
@@ -40,6 +39,7 @@ def search_min_distances(elements:list, core:int): #core=index+1 ; index=core-1
     
 
 def pathfinder_optimize(source:int,coordinates:list): #source = index +1 ; index=source-1
+<<<<<<< HEAD
     temp=search_min_distances(coordinates,source)
     coordinates.pop(source-1)
     sum_path=temp[0]
@@ -53,11 +53,45 @@ def pathfinder_optimize(source:int,coordinates:list): #source = index +1 ; index
                 break
         sum_path+=point[0]
     print(path_id)
+=======
+    first_city =coordinates[source-1]
+    path_id=[source]
+    temp=search_min_distances(coordinates,source)
+    coordinates.pop(source-1)
+    sum_path=temp[0]
+    path_id.append(temp[1])
+    core=temp[1]
+    for k in range(len(coordinates)-1):
+        temp=search_min_distances(coordinates,core)
+        for i in range(len(coordinates)):    
+            if coordinates[i][0]==core:
+                coordinates.pop(i)
+                break
+        sum_path+=temp[0]
+        path_id.append(temp[1])
+        core=temp[1]
+    sum_path+=sqrt((coordinates[0][1]-first_city[1])**2+(coordinates[0][2]-first_city[2])**2)
+    path_id.append(first_city[0])
+>>>>>>> 84149189bd109118c2460e3beb9e8aaecfba0699
     return sum_path
 
 
 if __name__=='__main__':
+<<<<<<< HEAD
     x=pathfinder_optimize(64,open_file())
     print(x)
 
+=======
+    minimum_path=1000
+    city_begin=0
+    for i in range(1,101):
+        x=pathfinder_optimize(i,open_file())
+        if minimum_path>x:
+            minimum_path=x
+            city_begin=i
+    print(pathfinder_naive(1,open_file()))
+    print(minimum_path)
+    print(city_begin)
+    print(pathfinder_optimize(city_begin,open_file()))
+>>>>>>> 84149189bd109118c2460e3beb9e8aaecfba0699
 
