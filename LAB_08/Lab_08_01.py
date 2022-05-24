@@ -1,10 +1,9 @@
 from math import sqrt
-from numpy import power
 
 def open_file()-> list:
     """opens file with coordinates
     """
-    coordinates=open('E:\PROGRAMMS\Collage-AiSD\LAB_08\TSP.txt','r').readlines()
+    coordinates=open('C:\PY prog\LAB_08\TSP.txt','r').readlines()
 
     for i in range(len(coordinates)):    
         coordinates[i]=coordinates[i].split('\t')
@@ -33,36 +32,36 @@ def search_min_distances(elements:list, core:int): #core=index+1 ; index=core-1
                if elements[j][0]==core:
                     temp_id=j    #element tablicy = temp id
             distance=sqrt(((elements[temp_id][1]-elements[i][1]))**2+(elements[temp_id][2]-elements[i][2])**2)
-            print('DISTANCE')
-            print(distance)
-            print(core,elements[i][0])
             if distance<min_distance[0]:
-                
-                print(elements[i][0])
                 min_distance[0]=distance
                 min_distance[1]=elements[i][0]
     return min_distance
     
 
 def pathfinder_optimize(source:int,coordinates:list): #source = index +1 ; index=source-1
-    
+    path_id=[source]
     temp=search_min_distances(coordinates,source)
     coordinates.pop(source-1)
     sum_path=temp[0]
-    path_id=[temp[1]]
-    print(sum_path)
+    path_id.append(temp[1])
+    core=temp[1]
     print(path_id)
-    # for i in range(len(coordinates)-1):
-    #     point=search_min_distances(coordinates,temp[1])
-    #     if  coordinates[i][0]==int(point[1]):
-    #         path_id.append(point[1])
-    #         coordinates.pop(int(point[1]-1))
-    #     sum_path+=point[0]
+    for k in range(len(coordinates)-1):
+        temp=search_min_distances(coordinates,core)
+        for i in range(len(coordinates)):    
+            if coordinates[i][0]==core:
+                coordinates.pop(i)
+                break
+        sum_path+=temp[0]
+        path_id.append(temp[1])
+        core=temp[1]
+        print(path_id)
+
     return sum_path
 
 
 if __name__=='__main__':
-    x=pathfinder_optimize(2,open_file())
+    x=pathfinder_optimize(26,open_file())
     print(x)
 
 
