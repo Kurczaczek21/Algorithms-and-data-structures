@@ -1,3 +1,5 @@
+import operator
+
 class Item:
     def __init__(self,id:int, width:int,height:int,value:int) -> None:
         self.id=id
@@ -37,8 +39,13 @@ def open_file(data:int):
         items.append(Item(int(file[i][0]),int(file[i][1]),int(file[i][2]),int(file[i][3])))
 
     return items
+def sort_by_values(elements:list):
+    sorted_elements = sorted(elements, key=operator.attrgetter('value'))    #????????
+
+
 
 if __name__ == '__main__':
     items=open_file(20)
-    items[0].printer()
-    print(items[1].get_value())
+    items[25].printer()
+    
+    
