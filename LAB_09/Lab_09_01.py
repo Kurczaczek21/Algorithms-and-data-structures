@@ -38,6 +38,7 @@ def open_file(data:int):
 
     return items
 
-items=open_file(20)
-items[0].printer()
-print(items[1].get_value())
+if __name__ == '__main__':
+    items=open_file(20)
+    items[0].printer()
+    print(items[1].get_value())
