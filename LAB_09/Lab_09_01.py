@@ -6,6 +6,7 @@ class Item:
         self.width=width
         self.height=height
         self.value=value
+        self.proportion =self.value/(self.width*self.height)
 
     def surface_area(self):
         return self.width*self.height
@@ -17,15 +18,10 @@ class Item:
         return self.value
     
     def rotate(self):
-        x=self.width
-        self.width=self.height
-        self.height=x
+        self.width,self.height =self.height, self.width
     
     def printer(self):
         print(self.id,self.width,self.height,self.value)
-
-    def proportion(self):
-        return self.value/(self.width*self.height)
 
 def open_file(data:int):
     """opens file with items
