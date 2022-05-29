@@ -7,6 +7,9 @@ class Item:
         self.height=height
         self.value=value
         self.proportion =self.value/(self.width*self.height)
+        
+    def __str__(self):
+        return str(self.id)
 
     def surface_area(self):
         return self.width*self.height
@@ -21,12 +24,12 @@ class Item:
         self.width,self.height =self.height, self.width
     
     def printer(self):
-        print(self.id,self.width,self.height,self.value)
+        print(self.id,self.width,self.height,self.value,self.proportion)
 
 def open_file(data:int):
     """opens file with items
     """
-    file=open('C:\PY prog\LAB_09\packages\packages'+str(data)+'.txt','r').readlines()
+    file=open('E:\PROGRAMMS\Collage-AiSD\LAB_09\packages\packages'+str(data)+'.txt','r').readlines()
     items=[]
     file.pop(0) 
     file.pop(0)
@@ -36,12 +39,13 @@ def open_file(data:int):
 
     return items
 def sort_by_values(elements:list):
-    sorted_elements = sorted(elements, key=operator.attrgetter('value'))    #????????
-
-
+    return sorted(elements , key=operator.attrgetter('proportion'),reverse=True)
 
 if __name__ == '__main__':
     items=open_file(20)
-    items[25].printer()
+    items=sort_by_values(items)
+    for item in items:
+        item.printer()
+        
     
     
