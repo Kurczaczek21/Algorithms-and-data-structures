@@ -47,14 +47,10 @@ def open_file(data:int):
 
     return items
 
-def sort_by_values(elements:list):
-    return sorted(elements , key=operator.attrgetter('proportion'),reverse=True)
+def sort_by_values(elements:list,sort_key:str):
+    return sorted(elements , key=operator.attrgetter(sort_key), reverse=True)
 
 def check_fit(x, y, backapck):
-	"""
-	:return: False if element does not fit to knapsack
-				else tuple of starting coordinates and boolean determining if element was turned (x, y, True/False)
-	"""
 	for x_start in range(len(backapck) - x + 1):
 		for y_start in range(len(backapck) - y + 1):
 			fits = True
@@ -67,8 +63,6 @@ def check_fit(x, y, backapck):
 					break
 			if fits:
 				return x_start, y_start, False
-
-	# other orientation
 	for x_start in range(len(backapck) - x + 1):
 		for y_start in range(len(backapck) - y + 1):
 			fits = True
@@ -85,50 +79,37 @@ def check_fit(x, y, backapck):
 	return False
 
 if __name__ == '__main__':
-    items=open_file(20)
-    items=sort_by_values(items)
-    for item in items:
-        item.printer()
-
-    backapck = np.zeros((20, 20), dtype=int)
+    size=1000
+    key='proportion'
+    items=open_file(size)
+    items=sort_by_values(items, key)
+    backapck = np.zeros((size, size), dtype=int)
     value=0
     start=time()
     
     for item in items:
         fit = check_fit(item.get_width(), item.get_height(), backapck)
         if fit:
-            # def x_y_placement(width,height):
-                
-
-            if (fit[2]):   # x_start   width + x_start
+            if (fit[2]):
                 for x in range(fit[0], item.get_width() + fit[0]):
-                    #             y_start   height + y_start
                     for y in range(fit[1], item.get_height() + fit[1]):
                         backapck[y][x] = item.get_id()
-            # x,y placement
-            if (fit[2]):   # x_start   width + x_start
+            if (fit[2]):
                 for x in range(fit[0], item.get_width() + fit[0]):
-                    #             y_start   height + y_start
                     for y in range(fit[1], item.get_height() + fit[1]):
-                        backapck[y][x] = item.get_id()  # insert item with `id` to knapsack
-            # y,x placement
+                        backapck[y][x] = item.get_id()
             else:
                 for x in range(fit[0], item.get_width() + fit[0]):
                     for y in range(fit[1], item.get_height() + fit[1]):
-                        backapck[x][y] = item.get_id()  # insert item with `id` to knapsack
-
+                        backapck[x][y] = item.get_id()
             value += item.get_value()
-    
-    # value of all elements
     max_value = 0
     for item in items:
         max_value += item.get_value()
 
-    # print(knapsack)
     elapsed_time = time() - start
-    print(f'size = {20}')
+    print(f'size = {size}')
     print(f'time = {elapsed_time}')
     print(f'reached value = {value}')
     print(f'max possible value = {max_value}\n')
     print(backapck)
-    
