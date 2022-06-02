@@ -37,7 +37,7 @@ class Item:
 def open_file(data:int):
     """opens file with items
     """
-    file=open('C:\PY prog\LAB_09\packages\packages'+str(data)+'.txt','r').readlines()
+    file=open('E:\PROGRAMMS\Collage-AiSD\LAB_09\packages\packages'+str(data)+'.txt','r').readlines()
     items=[]
     file.pop(0) 
     file.pop(0)
@@ -79,37 +79,37 @@ def check_fit(x, y, backapck):
 	return False
 
 if __name__ == '__main__':
-    size=1000
-    key='proportion'
-    items=open_file(size)
-    items=sort_by_values(items, key)
-    backapck = np.zeros((size, size), dtype=int)
-    value=0
-    start=time()
-    
-    for item in items:
-        fit = check_fit(item.get_width(), item.get_height(), backapck)
-        if fit:
-            if (fit[2]):
-                for x in range(fit[0], item.get_width() + fit[0]):
-                    for y in range(fit[1], item.get_height() + fit[1]):
-                        backapck[y][x] = item.get_id()
-            if (fit[2]):
-                for x in range(fit[0], item.get_width() + fit[0]):
-                    for y in range(fit[1], item.get_height() + fit[1]):
-                        backapck[y][x] = item.get_id()
-            else:
-                for x in range(fit[0], item.get_width() + fit[0]):
-                    for y in range(fit[1], item.get_height() + fit[1]):
-                        backapck[x][y] = item.get_id()
-            value += item.get_value()
-    max_value = 0
-    for item in items:
-        max_value += item.get_value()
+    files=[20, 100, 500, 1000]
+    for size in files:
+        key='proportion'
+        items=open_file(size)
+        items=sort_by_values(items, key)
+        backapck = np.zeros((size, size), dtype=int)
+        value=0
+        start=time()
+        
+        for item in items:
+            fit = check_fit(item.get_width(), item.get_height(), backapck)
+            if fit:
+                if (fit[2]):
+                    for x in range(fit[0], item.get_width() + fit[0]):
+                        for y in range(fit[1], item.get_height() + fit[1]):
+                            backapck[y][x] = item.get_id()
+                if (fit[2]):
+                    for x in range(fit[0], item.get_width() + fit[0]):
+                        for y in range(fit[1], item.get_height() + fit[1]):
+                            backapck[y][x] = item.get_id()
+                else:
+                    for x in range(fit[0], item.get_width() + fit[0]):
+                        for y in range(fit[1], item.get_height() + fit[1]):
+                            backapck[x][y] = item.get_id()
+                value += item.get_value()
+        max_value = 0
+        for item in items:
+            max_value += item.get_value()
 
-    elapsed_time = time() - start
-    print(f'size = {size}')
-    print(f'time = {elapsed_time}')
-    print(f'reached value = {value}')
-    print(f'max possible value = {max_value}\n')
-    print(backapck)
+        elapsed_time = time() - start
+        print(f'size = {size}')
+        print(f'time = {elapsed_time}')
+        print(f'reached value = {value}')
+        print(f'max possible value = {max_value}\n')
